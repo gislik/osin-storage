@@ -84,7 +84,10 @@ func (s *Storage) LoadAuthorize(code string) (*osin.AuthorizeData, error) {
 			RedirectUri: authorize.RedirectUri,
 			State:       authorize.State,
 			CreatedAt:   authorize.CreatedAt,
-			UserData:    authorize.UserData,
+		}
+
+		if authorize.UserData != "" {
+			oa.UserData = authorize.UserData
 		}
 		return oa, nil
 	}
@@ -156,7 +159,9 @@ func (s *Storage) LoadAccess(code string) (*osin.AccessData, error) {
 			Scope:         a.Scope,
 			RedirectUri:   a.RedirectUri,
 			CreatedAt:     a.CreatedAt,
-			UserData:      a.UserData,
+		}
+		if a.UserData != "" {
+			oa.UserData = a.UserData
 		}
 		return oa, nil
 	}
