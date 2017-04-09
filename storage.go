@@ -45,6 +45,36 @@ func (s *Storage) GetClient(id string) (osin.Client, error) {
 	return nil, err
 }
 
+// SaveClient saves client
+func (s *Storage) SaveClient(c osin.Client) error {
+	client := Client{
+		ID:          c.GetId(),
+		Secret:      c.GetSecret(),
+		RedirectUri: c.GetRedirectUri(),
+	}
+	if c.GetUserData() != nil {
+		v, err := userDataToString(c.GetUserData())
+		if err != nil {
+			return err
+		}
+		client.UserData = v
+	}
+	return s.db.Create(&client).Error
+
+}
+
+// RemoveClient removes the client with matching id
+func (s *Storage) RemoveClient(id string) error {
+	var a Client
+	if err = s.db.Where("id = ?", id).First(&a).Error; err == nil {
+		if err = s.db.Delete(&a).Error; err == nil {
+			return nil
+		}
+		return err
+	}
+	return err
+}
+
 // SaveAuthorize saves authorize data.
 func (s *Storage) SaveAuthorize(data *osin.AuthorizeData) error {
 	authorize := Authorize{
