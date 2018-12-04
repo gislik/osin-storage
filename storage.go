@@ -3,8 +3,8 @@ package storage
 import (
 	"encoding/json"
 
-	"github.com/RangelReale/osin"
 	"github.com/gislik/gorm"
+	"github.com/openshift/osin"
 )
 
 type Storage struct {

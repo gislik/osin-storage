@@ -5,11 +5,11 @@ import (
 	"net/http"
 	"net/url"
 
-	"github.com/RangelReale/osin"
-	"github.com/RangelReale/osin/example"
-	"github.com/collinsss/osin-storage"
 	"github.com/gislik/gorm"
 	_ "github.com/gislik/gorm/dialects/postgres"
+	"github.com/gislik/osin-storage"
+	"github.com/openshift/osin"
+	"github.com/openshift/osin/example"
 )
 
 //InitDB initial gorm db
