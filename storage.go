@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 
 	"github.com/RangelReale/osin"
-	"github.com/jinzhu/gorm"
+	"github.com/gislik/gorm"
 )
 
 type Storage struct {

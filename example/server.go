@@ -8,8 +8,8 @@ import (
 	"github.com/RangelReale/osin"
 	"github.com/RangelReale/osin/example"
 	"github.com/collinsss/osin-storage"
-	"github.com/jinzhu/gorm"
-	_ "github.com/jinzhu/gorm/dialects/postgres"
+	"github.com/gislik/gorm"
+	_ "github.com/gislik/gorm/dialects/postgres"
 )
 
 //InitDB initial gorm db
