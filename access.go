@@ -1,6 +1,8 @@
 package storage
 
 import (
+	"github.com/gislik/gorm"
+
 	"time"
 )
 
@@ -18,7 +20,7 @@ type Access struct {
 	UserData     string    // Data to be passed to storage. Not used by the library.
 }
 
-//TableName of Access data model
-func (Access) TableName() string {
-	return "oauth_access"
+// TableName is used by `gorm`
+func (Access) TableName(db *gorm.DB) string {
+	return gorm.DefaultTableNameHandler(db, "oauth_access")
 }
