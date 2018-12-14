@@ -1,5 +1,6 @@
 package storage
 
+import "github.com/gislik/gorm"
 import "time"
 
 // Authorize data model
@@ -14,7 +15,7 @@ type Authorize struct {
 	UserData    string    // Data to be passed to storage. Not used by the library.
 }
 
-//Tablename of Authorize data model
-func (Authorize) TableName() string {
-	return "oauth_authorize"
+// TableName is used by `gorm`
+func (Authorize) TableName(db *gorm.DB) string {
+	return gorm.DefaultTableNameHandler(db, "oauth_authorize")
 }
