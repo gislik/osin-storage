@@ -239,6 +239,9 @@ func userDataToString(userData interface{}) (string, error) {
 	if userData == nil {
 		return "", nil
 	}
+	if s, ok := userData.(string); ok {
+		return s, nil
+	}
 	v, err := json.Marshal(userData)
 	if err != nil {
 		return "", err
