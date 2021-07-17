@@ -78,13 +78,15 @@ func (s *Storage) RemoveClient(id string) error {
 // SaveAuthorize saves authorize data.
 func (s *Storage) SaveAuthorize(data *osin.AuthorizeData) error {
 	authorize := Authorize{
-		ClientID:    data.Client.GetId(),
-		Code:        data.Code,
-		ExpiresIn:   data.ExpiresIn,
-		RedirectUri: data.RedirectUri,
-		Scope:       data.Scope,
-		State:       data.State,
-		CreatedAt:   data.CreatedAt,
+		ClientID:            data.Client.GetId(),
+		Code:                data.Code,
+		ExpiresIn:           data.ExpiresIn,
+		RedirectUri:         data.RedirectUri,
+		Scope:               data.Scope,
+		State:               data.State,
+		CreatedAt:           data.CreatedAt,
+		CodeChallenge:       data.CodeChallenge,
+		CodeChallengeMethod: data.CodeChallengeMethod,
 	}
 	if data.UserData != nil {
 		v, err := userDataToString(data.UserData)
@@ -107,13 +109,15 @@ func (s *Storage) LoadAuthorize(code string) (*osin.AuthorizeData, error) {
 			return nil, err
 		}
 		oa := &osin.AuthorizeData{
-			Client:      client,
-			Code:        authorize.Code,
-			ExpiresIn:   authorize.ExpiresIn,
-			Scope:       authorize.Scope,
-			RedirectUri: authorize.RedirectUri,
-			State:       authorize.State,
-			CreatedAt:   authorize.CreatedAt,
+			Client:              client,
+			Code:                authorize.Code,
+			ExpiresIn:           authorize.ExpiresIn,
+			Scope:               authorize.Scope,
+			RedirectUri:         authorize.RedirectUri,
+			State:               authorize.State,
+			CreatedAt:           authorize.CreatedAt,
+			CodeChallenge:       authorize.CodeChallenge,
+			CodeChallengeMethod: authorize.CodeChallengeMethod,
 		}
 
 		if authorize.UserData != "" {
